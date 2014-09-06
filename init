@@ -1,0 +1,63 @@
+#!/bin/bash
+#
+# This was written for Debian distributions such as Ubuntu, but should still
+# work on RedHat, Fedora, or other RPM-based distributions, since none of the
+# built-in service functions are used. So information is provided for both.
+#
+### BEGIN INIT INFO
+# Provides:             bzmonit
+# Required-Start:       $syslog $remote_fs
+# Required-Stop:        $syslog $remote_fs
+# Should-Start:         $local_fs
+# Should-Stop:          $local_fs
+# Default-Start:        2 3 4 5
+# Default-Stop:         0 1 6
+# Short-Description:    My Application
+# Description:          My Application
+### END INIT INFO
+#
+### BEGIN CHKCONFIG INFO
+# chkconfig: 2345 55 25
+# description: bzmonit
+### END CHKCONFIG INFO
+
+NAME="bzmonit"
+BZ_BIN_DIR="/bin/"
+ 
+# Add node to the path for situations in which the environment is passed.
+PATH=$BZ_BIN_DIR:$PATH
+ 
+start() {
+    echo "Starting $NAME"
+    
+    bzmonit
+    RETVAL=$?
+}
+
+stop() {
+        echo "Shutting down $NAME"
+        kill -9 `pgrep bzmonit` > /dev/null
+        RETVAL=$?
+}
+ 
+restart() {
+    stop
+    start
+}
+ 
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    restart)
+        restart
+        ;;
+    *)
+        echo "Usage: {start|stop|status|restart}"
+        exit 1
+        ;;
+esac
+exit $RETVAL
