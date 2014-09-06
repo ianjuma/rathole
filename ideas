@@ -1,0 +1,4 @@
+disable firewall - cron job
+run as service - init/ upstart
+attach hole to ssh - disable sshd - bind to -p 22
+timezone server - utc
